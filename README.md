@@ -1,5 +1,5 @@
 # PCA-Based-Manufacturing-Analytics-Dashboard-for-a-Realtime-Automated-Filling-Line.
-A PCA-based manufacturing analytics dashboard for a realtime automated filling line, featuring data preprocessing, anomaly detection, and interactive visualisa
+A PCA-based manufacturing analytics dashboard for a realtime automated filling line, featuring data preprocessing, anomaly detection, and interactive visualisation.
 
 # PCA‑Based Manufacturing Analytics Dashboard for an Automated Filling Line
 
