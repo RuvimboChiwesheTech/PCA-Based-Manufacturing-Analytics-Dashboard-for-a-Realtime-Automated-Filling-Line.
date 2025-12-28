@@ -83,6 +83,36 @@ elif page == "PCA Insights":
     # Preview filtered data
     st.write("Filtered PCA Data:")
     st.dataframe(filtered_df)
+    
+st.dataframe(filtered_df)
+
+# KPI Tiles
+
+st.subheader(" Key Performance Indicators")
+
+# Calculate anomaly flags
+filtered_df["T2_Flag"] = filtered_df["T2"] > T2_limit
+filtered_df["Q_Flag"] = filtered_df["Q"] > Q_limit
+filtered_df["Anomaly"] = filtered_df["T2_Flag"] | filtered_df["Q_Flag"]
+
+total_parts = len(filtered_df)
+total_anomalies = filtered_df["Anomaly"].sum()
+pct_anomalies = (total_anomalies / total_parts * 100) if total_parts > 0 else 0
+
+# Most common reject type
+if "Reject_Type" in filtered_df.columns and filtered_df["Reject_Type"].notna().any():
+    top_reject = filtered_df["Reject_Type"].mode()[0]
+else:
+    top_reject = "N/A"
+
+# Display KPI tiles in 4 columns
+col1, col2, col3, col4 = st.columns(4)
+
+col1.metric("Total Parts", f"{total_parts}")
+col2.metric("Total Anomalies", f"{total_anomalies}")
+col3.metric("% Out of Control", f"{pct_anomalies:.2f}%")
+col4.metric("Most Common Reject", top_reject)
+
 
 
 
